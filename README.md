@@ -1,6 +1,7 @@
 # MockMate-AIMockInterviewer
 Bridging the Gap Between Preparation and Performance.
-**Table of Contents**
+
+#**Table of Contents**
 1.	Setup Instructions
 2.	Architecture
 3.	Design Decision
