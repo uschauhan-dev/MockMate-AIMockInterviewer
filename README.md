@@ -32,6 +32,7 @@ A. The Setup & UI (Lines 1-80)
 •	Gradient Backgrounds: To give it a modern, tech feel.
 •	3D Chat Bubbles: I added shadow and hover effects so the chat feels interactive.
 •	Forced Visibility: I overrode the default styles to ensure high contrast (White/Cyan text) against the dark background."
+
 B. The "Ears" & "Mouth" (Lines 83-147)
 "For the conversational loop, I created two helper functions:
 1.	transcribe_audio: This takes the raw audio bytes from the microphone and sends them to Groq's Whisper model to get text.
@@ -42,11 +43,13 @@ C. The "Brain" & Agentic Logic (Lines 149-208)
 •	Dynamic Context: The prompt injects the Target Role (e.g., Software Engineer) and Experience Level so the AI adapts its persona.
 •	State Management: The agent tracks which stage it is in: Introduction, Hard Skills, Soft Skills, or Feedback.
 •	Hidden Triggers: I instructed the LLM to output hidden tokens like MOVING_TO_HARD_SKILLS. My Python code detects these tokens to automatically advance the interview stage without the user needing to do anything."
+
 D. Session State & Sidebar (Lines 210-256)
 "Streamlit re-runs the code on every interaction. To prevent the bot from forgetting the conversation, I used st.session_state to act as the app's 'Memory'.
 In the Sidebar, I included:
 •	Configuration: Where users set their target role.
 •	Visual Feedback: A Lottie animation to give the agent a 'face' and a dynamic status box showing the current interview stage."
+
 E. The Main Execution Loop (Lines 258-End)
 "Finally, this is the main event loop:
 1.	The mic_recorder captures user audio.
