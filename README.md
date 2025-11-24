@@ -26,6 +26,32 @@ Open the terminal-
 Write the required code there
 
 **2. Architecture (Step-by-Step):**
+```mermaid
+graph TD
+    %% Styles
+    classDef ui fill:#2d3436,stroke:#0984e3,stroke-width:2px,color:white;
+    classDef cloud fill:#f39c12,stroke:#e67e22,stroke-width:2px,color:white;
+    classDef logic fill:#27ae60,stroke:#2ecc71,stroke-width:2px,color:white;
+
+    %% Nodes
+    User((👤 User Voice)) -->|Microphone Input| UI[💻 Streamlit Interface]
+    
+    subgraph "Cloud Processing (Low Latency)"
+        UI -->|1. Send Audio Bytes| STT["👂 Groq Whisper-v3 (Speech-to-Text)"]
+        STT -->|2. Transcribed Text| State{"🧠 State Manager (Intro/Hard/Soft Skills)"}
+        
+        State -->|3. Context + System Prompt| LLM["🤖 Groq Llama-3-70b (Inference Engine)"]
+        LLM -->|4. Agent Response| TTS["🗣️ EdgeTTS (Neural Voice Generation)"]
+    end
+    
+    TTS -->|5. Audio Stream| UI
+    UI -->|6. Auto-Play Response| User
+
+    %% Apply Styles
+    class UI ui;
+    class STT,LLM,TTS cloud;
+    class State logic;
+```
 
 A. The Setup & UI (Lines 1-80)
 "I started by setting up the page configuration and injecting Custom CSS. I moved away from the standard Streamlit look to create a 'Glassmorphism' UI. This includes:
